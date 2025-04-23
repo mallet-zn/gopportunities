@@ -5,13 +5,29 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/mallet-zn/gopportunities/schemas"
 )
+
+type ErrorResponse struct {
+	Message    string `json:"message"`
+	StatusCode string `json:"statusCode"`
+}
+
+type CreateOpeningResponse struct {
+	Message string                  `json:"message"`
+	Data    schemas.OpeningResponse `json:"data"`
+}
+
+type DeleteOpeningResponse struct {
+	Message string                  `json:"message"`
+	Data    schemas.OpeningResponse `json:"data"`
+}
 
 func sendErr(ctx *gin.Context, code int, msg string) {
 	ctx.Header("Content-type", "application/json")
 	ctx.JSON(code, gin.H{
-		"message": msg,
-		"status":  code,
+		"message":    msg,
+		"statusCode": code,
 	})
 }
 
