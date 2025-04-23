@@ -35,6 +35,20 @@ definitions:
       statusCode:
         type: string
     type: object
+  handler.ListOpeningResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.OpeningResponse'
+      message:
+        type: string
+    type: object
+  handler.ShowOpeningResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.OpeningResponse'
+      message:
+        type: string
+    type: object
   schemas.OpeningResponse:
     properties:
       company:
@@ -68,11 +82,10 @@ paths:
       description: Delete a new job opening
       parameters:
       - description: Request body
-        in: body
-        name: request
+        in: query
+        name: id
         required: true
-        schema:
-          $ref: '#/definitions/handler.CreateOpeningRequest'
+        type: string
       produces:
       - application/json
       responses:
@@ -80,6 +93,10 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/handler.DeleteOpeningResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
         "404":
           description: Not Found
           schema:
@@ -89,6 +106,34 @@ paths:
           schema:
             $ref: '#/definitions/handler.ErrorResponse'
       summary: Delete Opening
+      tags:
+      - Openings
+    get:
+      consumes:
+      - application/json
+      description: Show a job opening
+      parameters:
+      - description: Request body
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ShowOpeningResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Show Job Opening
       tags:
       - Openings
     post:
@@ -118,6 +163,53 @@ paths:
           schema:
             $ref: '#/definitions/handler.ErrorResponse'
       summary: Create Opening
+      tags:
+      - Openings
+    put:
+      consumes:
+      - application/json
+      description: Update a job opening
+      parameters:
+      - description: Request body
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ShowOpeningResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Update Opening
+      tags:
+      - Openings
+  /openings:
+    get:
+      consumes:
+      - application/json
+      description: List all job openings
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ListOpeningResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: List Openings
       tags:
       - Openings
 swagger: "2.0"

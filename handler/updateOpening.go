@@ -8,6 +8,18 @@ import (
 	"github.com/mallet-zn/gopportunities/schemas"
 )
 
+// @Basepath /api/v1
+
+// @Summary Update Opening
+// @Description Update a job opening
+// @Tags Openings
+// @Accept json
+// @Produce json
+// @Param id query string true "Request body"
+// @Success 200 {object} UpdateOpeningResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /opening [put]
 func UpdateOpeningHandler(ctx *gin.Context) {
 	request := UpdateOpeningRequest{}
 

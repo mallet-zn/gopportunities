@@ -8,6 +8,18 @@ import (
 	"github.com/mallet-zn/gopportunities/schemas"
 )
 
+// @Basepath /api/v1
+
+// @Summary Show Job Opening
+// @Description Show a job opening
+// @Tags Openings
+// @Accept json
+// @Produce json
+// @Param id query string true "Request body"
+// @Success 200 {object} ShowOpeningResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /opening [get]
 func ShowOpeningHandler(ctx *gin.Context) {
 	id := ctx.Query("id")
 	if id == "" {

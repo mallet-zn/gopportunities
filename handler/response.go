@@ -23,6 +23,21 @@ type DeleteOpeningResponse struct {
 	Data    schemas.OpeningResponse `json:"data"`
 }
 
+type UpdateOpeningResponse struct {
+	Message string                  `json:"message"`
+	Data    schemas.OpeningResponse `json:"data"`
+}
+
+type ListOpeningResponse struct {
+	Message string                  `json:"message"`
+	Data    schemas.OpeningResponse `json:"data"`
+}
+
+type ShowOpeningResponse struct {
+	Message string                  `json:"message"`
+	Data    schemas.OpeningResponse `json:"data"`
+}
+
 func sendErr(ctx *gin.Context, code int, msg string) {
 	ctx.Header("Content-type", "application/json")
 	ctx.JSON(code, gin.H{
